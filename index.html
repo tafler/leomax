@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shop24</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header__top-panel">
+            <div class="wraper">
+                <div class="top-panel__phone">
+                    <a href="#">
+                        <span class="top-panel__phone--number">8 (800) 500-75-55</span> Бесплатный звонок по России</a>
+                </div>
+                <a href="#" class="top-panel__phone--btn">
+                    <img src="/src/img/topStar.png" alt="">
+                    <span class="top-panel__phone--btntext">Звездный блог</span>
+                </a>
+                <a href="#" class="top-panel__phone--btn">
+                    <img src="/src/img/topYoutube.png" alt="">
+                    <span class="top-panel__phone--btntext"> Смотрите нас на Youtube</span>
+                </a>
+                <a href="#" class="top-panel__phone--btn">
+                    <img src="/src/img/topPlay.png" alt="">
+                    <span class="top-panel__phone--btntext"> Смотрите наш прямой эфир</span>
+                </a>
+            </div>
+        </div>
+        <div class="header__account-panel">
+            <div class="wraper">
+                <a href="#">
+                    <img src="/src/img/topLogo.png" alt="" class="account-panel--logoimg">
+                </a>
+                <a href="#">
+                    <span class="account-panel--logotext">New Look</span>
+                </a>
+                <div class="header--finder">
+                    <input type="text" placeholder="Поиск по сайту">
+                    <a href="#">
+                        <img src="/src/img/topFind.png" alt="">
+                    </a>
+                </div>
+                <a href="#" class="account-panel--name">Анастасия</a>
+                <a href="#" class="account-panel--basket">В корзине:
+                    <br>3 товара</a>
+            </div>
+        </div>
+        <nav class="header__main-nav">
+            <div class="wraper">
+                <ul class="main-nav__list">
+                    <li class="main-nav__item--active">Одежда и аксессуары</li>
+                    <li>Обувь</li>
+                    <li>Украшения</li>
+                    <li>Красота и здоровье</li>
+                    <li>Товары для дома</li>
+                    <li>Товары для кухни</li>
+                </ul>
+            </div>
+        </nav>
+
+        <nav class="header__main-subnav">
+            <div class="wraper">
+                <ul class="main-subnav__list">
+                    <li>Женская одежда</li>
+                    <li>Мужская одежда</li>
+                    <li>Аксессуары</li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main id="app">
+        <div class="wraper">
+            <div class="bascket">
+                <div class="bascket-header__title">
+                    <h2 class="bascket-header">Ваша корзина</h2>
+                </div>
+
+                <div class="basket__mylist">
+                    <ul class="mylist__head">
+                        <li>Товар</li>
+                        <li>Описание</li>
+                        <li class="text-center">Количество</li>
+                        <li class="text-center">Цена</li>
+                        <li class="text-center">Удалить</li>
+                        <template  v-for="(product, index) in products" v-if="product.count >= 1">
+                        <li>
+                            <img :src="product.img" alt="">
+                        </li>
+                        <li>
+                            <div class="descript">
+                                <p>{{ product.title }};
+                                </p>
+                                <p class="mylist__head--artikle">Код: {{ product.id }}</p>
+                                <p>Размер: {{ product.size }}
+                                    <br>Цвет: {{ product.color }}</p>
+                            </div>
+                        </li>
+                        <li class="text-center count-item">
+                            <span class="count-item--decrement" @click="minus(index)">-</span> 
+                            {{ product.count }}
+                            <span class="count-item--increment" @click="plus(index)">+</span>
+                        </li>
+                        <li class="text-center">{{ product.price * product.count }} руб.</li>
+                        <li class="cross-close" @click="delateElem( index )"></li>
+                    </template>
+                    </ul>
+                </div>
+                <div class="basket__mysumm">
+                    <div class="mysumm__promo">
+                        Есть промокод?
+                        <div class="mysumm__promo--code">
+                            <input type="text" placeholder="Введите промокод" height="20" v-model="promocode">
+                            <button type="button" :class="[ promocode == '12345' ? 'btn-activated' : 'btn-disabled' ]" @click="addCode()">Применить</button>
+                        </div>
+                    </div>
+                    <div class="mysumm__cash">
+                        <div class="mysumm__cash--price">Сумма заказа:
+                            <span>{{ returnSumm }} руб.</span>
+                        </div>
+                        <div class="orange mysumm__cash--price" v-if="promo">Промокод:
+                            <span>-{{ promo }}руб.</span>
+                        </div>
+                        <div class="mysumm__cash--price">Всего:
+                            <span>{{ returnSumm - promo }}руб.</span>
+                        </div>
+                        <button type="button" class="btn-activated">Оформить заказ</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="recomendations">
+                <div class="recomendations-title text-center">
+                    <h3>Добавьте к вашему заказу</h3>
+                </div>
+                <div class="recomendations__blocks">
+                    <div class="recomendations__block"><a href="#">
+                        <img src="/src/img/item4.jpg">
+                        <div class="recomendations__block-text text-center">
+                            <span class="recomendations__block-text--descr">Солнечные очки зеленого цвета в стиле ретро</span>
+                            <span class="recomendations__block-text--price">2450 руб.</span></a>
+                        </div>
+                    </div>
+                    <div class="recomendations__block"><a href="#">
+                        <img src="/src/img/item5.jpg">
+                        <div class="recomendations__block-text text-center">
+                            <span class="recomendations__block-text--descr">Шляпа</span>
+                            <span class="recomendations__block-text--price">800 руб.</span></a>
+                        </div>
+                    </div>
+                    <div class="recomendations__block"><a href="#">
+                        <img src="/src/img/item6.jpg">
+                        <div class="recomendations__block-text text-center">
+                            <span class="recomendations__block-text--descr">Платье-миди с расклешенной юбкой
+                            </span>
+                            <span class="recomendations__block-text--price">2450 руб.</span></a>
+                        </div>
+                    </div>
+                    <div class="recomendations__block"><a href="#">
+                        <img src="/src/img/item7.jpg">
+                        <div class="recomendations__block-text text-center">
+                            <span class="recomendations__block-text--descr">Платье-миди с расклешенной юбкой
+                            </span>
+                            <span class="recomendations__block-text--price">2450 руб.</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+
+        <div class="wraper">
+            <div class="top-panel__socials">
+
+                <h4>SHOP24 в социальных сетях:</h4>
+                <ul class="top-panel__socials-list">
+                    <li class="top-panel__socials-item">
+                        <a href="#">
+                            <img src="/src/img/socials/Vkontakte.png" alt="">
+                        </a>
+                    </li>
+                    <li class="top-panel__socials-item">
+                        <a href="#">
+                            <img src="/src/img/socials/Facebook.png" alt="">
+                        </a>
+                    </li>
+                    <li class="top-panel__socials-item">
+                        <a href="#">
+                            <img src="/src/img/socials/odnoklassniki.png" alt="">
+                        </a>
+                    </li>
+                    <li class="top-panel__socials-item">
+                        <a href="#">
+                            <img src="/src/img/socials/Pinterest.png" alt="">
+                        </a>
+                    </li>
+                    <li class="top-panel__socials-item">
+                        <a href="#">
+                            <img src="/src/img/socials/Pin me.png" alt="">
+                        </a>
+                    </li>
+                    <li class="top-panel__socials-item">
+                        <a href="#">
+                            <img src="/src/img/socials/Instagram.png" alt="">
+                        </a>
+                    </li>
+                    <li class="top-panel__socials-item">
+                        <a href="#">
+                            <img src="/src/img/socials/Youtube.png" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__main">
+                <div class="footer__main--logo">
+                    <img src="src/img/topLogo.png" alt="">
+                </div>
+                <div class="footer__main__contucts">
+                    <p class="main__contucts--tel">8 (800) 500-75-55*</p>
+                    *Бесплатный звонок по всей России
+                    <p class="main__contucts--tel">8 (495) 733-96-03</p>
+                </div>
+                <ul class="footer__main__column">
+                    <li class="footer__main__column--header">Каталог товаров</li>
+                    <li><a href="#">Одежда и аксессуары</a></li>
+                    <li><a href="#">Обувь</a></li>
+                    <li><a href="#">Украшения</a></li>
+                    <li><a href="#">Красота и здоровье</a></li>
+                    <li><a href="#">Товары для дома, дачи и отдыха</a></li>
+                    <li><a href="#">Товары для кухни</a></li>
+                </ul>
+                <ul class="footer__main__column">
+                    <li class="footer__main__column--header">Заказ</li>
+                    <li><a href="#">Оплата и доставка</a></li>
+                    <li><a href="#">Возврат</a></li>
+                    <li><a href="#">Помощь</a></li>
+                    <li><a href="#">Благотворительный Фонд Константина Хабенского</a></li>
+                    <li><a href="#">Гарантия на дополнительное обслуживание товара</a></li>
+                    <li><a href="#">Пользовательское соглашение</a></li>
+                </ul>
+                <ul class="footer__main__column">
+                    <li class="footer__main__column--header">Shop24</li>
+                    <li><a href="#">Смотреть прямой эфир</a></li>
+                    <li><a href="#">Расписание передач</a></li>
+                    <li><a href="#">Акции</a></li>
+                    <li><a href="#">Личный кабинет</a></li>
+                    <li><a href="#">Поиск и карта сайта</a></li>
+                    <li><a href="#">Карта брендов</a></li>
+                    <li><a href="#">Обратная связь</a></li>
+                </ul>
+                <ul class="footer__main__column">
+                    <li class="footer__main__column--header">Информация</li>
+                    <li><a href="#">О канале</a></li>
+                    <li><a href="#">Сотрудничество</a></li>
+                    <li><a href="#">Покупайте с нами!</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__bottom-text text-center">Copyright © Товар ООО «Стиль и Мода», 2014-2016. Все права защищены. При использовании материалов сайта ссылка
+                    на www.shop24.com обязательна. 115193, Москва, ул. Кожуховская 5-я, д. 9, помещение VII Телефон 8 800
+                    500-75-55</p>
+            </div>
+    </footer>
+
+    <script>
+        var basket = new Vue({
+            el: '#app',
+            data: {
+                promo: 0,
+                promocode: '',
+                products: [
+                    {
+                        title: 'Платье-миди с расклешенной юбкой',
+                        id: '82039-11',
+                        img: 'src/img/item1.jpg',
+                        price: '2450',
+                        size: '44',
+                        color: 'синий',
+                        count: 1
+                    },
+                    {
+                        title: 'Туфли женские украшенные кружевными вставками',
+                        id: '13524-01',
+                        img: 'src/img/item2.jpg',
+                        price: '2450',
+                        size: '38',
+                        color: 'черный',
+                        count: 1
+        
+                    },
+                    {
+                        title: 'Платье-миди',
+                        id: '8239-11',
+                        img: 'src/img/item3.jpg',
+                        price: '2450',
+                        size: '44',
+                        color: 'белый',
+                        count: 1
+        
+                    },
+                    {                
+                        title: 'Платье-миди',
+                        id: '75039',
+                        img: 'src/img/item3.jpg',
+                        price: '2450',
+                        size: '46',
+                        color: 'белый',
+                        count: 1
+                    }
+                ]
+            },
+            methods: {
+                delateElem(i){
+                    this.products[i].count = 0;                    
+                },
+                minus(i){
+                    if(this.products[i].count > 0){
+                        this.products[i].count--;
+                    }
+                },
+                plus(i){
+                    this.products[i].count++;
+                },
+                addCode(){
+                    if(this.promocode == 12345){
+                        this.promo = 1800;
+                    }
+                }
+                
+            },
+            computed: {
+                returnSumm(){
+                    let summa = 0;
+                    for(let i in this.products){
+                        if(this.products[i].count){
+                        summa = summa + (this.products[i].price * this.products[i].count);
+                        }
+                    }
+                    return summa;
+                },
+
+            },
+
+        })
+        
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,457 @@
+/*   fonts */
+
+@font-face {
+    font-family: 'HelveticaNeueCyrUltraLight';
+    src: url('src/fonts/HelveticaNeueCyr-UltraLight.woff2') format('woff2'), url('src/fonts/HelveticaNeueCyr-UltraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Baskerville';
+    src: url('src/fonts/BaskervilleAZPSNormal-Italic.woff2') format('woff2'), url('src/fonts/BaskervilleAZPSNormal-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'dearJoe';
+    src: url('src/fonts/DearJoeItalic.woff2') format('woff2'), url('src/fonts/DearJoeItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CometaCTT';
+    src: url('src/fonts/CometaC.woff2') format('woff2'), url('src/fonts/CometaC.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyrThinItalic';
+    src: url('src/fonts/HelveticaNeueCyr-ThinItalic.woff2') format('woff2'), url('src/fonts/HelveticaNeueCyr-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyrRoman';
+    src: url('src/fonts/HelveticaNeueCyr-Roman.woff2') format('woff2'), url('src/fonts/HelveticaNeueCyr-Roman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.wraper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+button {
+    width: 180px;
+    border-radius: 30px;
+    line-height: 38px;
+    color: white;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+input{
+    outline: none;
+}
+.btn-disabled {
+    background-color: #b7b7b7;
+    user-select: none;
+}
+
+.btn-activated {
+    background-color: #ff6c00;
+    cursor: pointer;
+}
+
+.orange {
+    color: #ff6c00;
+}
+
+/*         top panel            */
+
+.header__top-panel {
+    background: #e4e4e4;
+    font-size: 14px;
+}
+
+.header__top-panel .wraper {
+    line-height: 40px;
+    display: flex;
+    align-items: baseline;
+}
+
+.top-panel__phone--btntext {
+    vertical-align: super;
+}
+
+.top-panel__phone--btn img {
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.top-panel__phone {
+    margin-right: auto;
+    font-size: 12px;
+}
+
+.top-panel__phone--number {
+    font-size: 18px;
+}
+
+/*             account panel       */
+
+.header__account-panel>.wraper {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.account-panel--logotext {
+    font-family: 'dearJoe';
+    font-size: 50px;
+}
+
+.account-panel--logoimg {
+    padding: 15px 0;
+}
+
+.account-panel--name {
+    padding-right: 95px;
+    line-height: 30px;
+    position: relative
+}
+
+.account-panel--name::before {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    content: '';
+    width: 25px;
+    height: 25px;
+    background: url(src/img/user.png) center no-repeat;
+}
+
+.account-panel--basket::before {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    content: '';
+    width: 25px;
+    height: 25px;
+    background: url(src/img/topBag.png) center no-repeat;
+}
+
+.account-panel--basket {
+    position: relative;
+}
+
+.header--finder input {
+    border: none;
+    outline: none;
+}
+
+.header--finder {
+    height: 22px;
+    line-height: 22px;
+    margin-right: auto;
+    margin-left: 50px;
+    border-bottom: 1px solid black;
+}
+
+/*          nav panel           */
+
+nav li {
+    cursor: pointer;
+}
+
+.header__main-nav {
+    background: #f8f8f8;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.main-nav__list {
+    display: flex;
+    margin: 0;
+}
+
+.main-nav__list li {
+    margin-right: 10px;
+    line-height: 50px;
+    padding-right: 18px;
+}
+
+.main-nav__item--active {
+    border-bottom: 2px solid #ff6c00;
+}
+
+.main-nav__list li:hover {
+    background: linear-gradient(to left, #f8f8f8, #f4f4f4, #f4f4f4, #f8f8f8);
+}
+
+/*                 nav subpanel        */
+
+.header__main-subnav {
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.main-subnav__list {
+    display: flex;
+    margin: 0;
+}
+
+.main-subnav__list li {
+    line-height: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.main-subnav__list li:hover {
+    box-sizing: border-box;
+    border-bottom: 2px solid #ff6c00;
+}
+
+/*                basket              */
+
+.text-center {
+    text-align: center;
+}
+
+.bascket-header__title {
+    margin-top: 60px;
+    margin-bottom: 50px;
+    background: linear-gradient(to top, transparent 48%, #d9d9d9 48%, #d9d9d9 52%, transparent 52%);
+    text-align: center;
+}
+
+.bascket-header {
+    display: inline;
+    padding: 0 20px;
+    background: white;
+}
+
+.basket__mylist {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid black;
+}
+
+.mylist__head {
+    display: grid;
+    grid-template-rows: 80px 1fr 1fr 1fr;
+    grid-template-columns: 180px 400px 1fr 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.mylist__head .count-item--decrement {
+    padding-right: 8px;
+    cursor: pointer;
+}
+
+.mylist__head .count-item {
+    font-size: 18px;
+}
+
+.mylist__head .count-item--increment {
+    padding-left: 8px;
+    cursor: pointer;
+}
+
+.cross-close {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    content: '';
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.cross-close::before {
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    transform: rotate(45deg);
+    content: '';
+    background: black;
+}
+
+.cross-close::after {
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    transform: rotate(-45deg);
+    content: '';
+    background: black;
+}
+
+.basket__mysumm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mysumm__promo--code input {
+    line-height: 40px;
+    width: 270px;
+    margin-right: 20px;
+}
+
+.mysumm__promo--code {
+    margin-top: 10px;
+    width: 480px;
+}
+
+.mysumm__cash {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    line-height: 27px;
+    padding-bottom: 90px;
+}
+
+.mysumm__cash--price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mysumm__cash button {
+    margin-top: 30px;
+    margin-left: auto;
+}
+
+.mysumm__cash .orange {
+    margin-bottom: 25px;
+}
+
+.recomendations {
+    margin-bottom: 95px;
+}
+
+.recomendations-title {
+    background: linear-gradient(to top, transparent 48%, #d9d9d9 48%, #d9d9d9 52%, transparent 52%);
+}
+
+.recomendations__blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.recomendations__block {
+    display: flex;
+    flex-direction: column;
+}
+
+.recomendations__block img {
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.recomendations__block-text {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recomendations__block-text--price {
+    font-weight: 600;
+}
+
+footer {
+    margin-top: auto;
+    color: #cacaca;
+    background: #2a2a2a;
+    padding-bottom: 1px;
+}
+footer a{
+    color: #cacaca;
+}
+.footer__main__column--header {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.footer__bottom {
+    width: 500px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.top-panel__socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-panel__socials-list {
+    display: flex;
+    justify-content: space-around;
+    width: 460px;
+}
+
+.top-panel__socials-list {
+    display: flex;
+}
+
+.top-panel__socials {
+    min-height: 80px;
+    border-bottom: 1px solid #b2b2b2;
+}
+
+.footer__main {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 100px 265px 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    border-bottom: 1px solid #b2b2b2;
+    padding-bottom: 20px;
+}
+
+.footer__main--logo {
+    margin-top: 20px;
+}
+
+.main__contucts--tel {
+    font-size: 30px;
+    line-height: 32px;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.footer__main__contucts p:last-of-type {
+    margin-top: 15px;
+}
+
+.footer__main__column li {
+    padding-bottom: 10px;
+}
+
+.footer__bottom-text {
+    font-size: 12px;
+}
